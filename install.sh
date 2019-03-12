@@ -1,10 +1,10 @@
 #!/bin/sh
-sudo su
-yes | apt update
-yes | apt upgrade 
+
+echo y | apt update
+echo y | apt upgrade 
 pip install shadowsocks
 
-json_content="{\n  \"server\":\"::\",\n  \"server_port\":10086,\n  \"password\":\"testpassword\",\n  \"timeout\":60,\n  \"method\":\"aes-256-cfb\",\n  \"fast_open\": true\n  \"workers\":1\n}"
+json_content="{\n  \"server\":\"::\",\n  \"server_port\":10086,\n  \"password\":\"testpassword\",\n  \"timeout\":600,\n  \"method\":\"aes-256-cfb\",\n  \"fast_open\": true,\n  \"workers\":1\n}"
 echo -e ${json_content} >> /etc/shadowsocks.json
 
 
@@ -42,7 +42,6 @@ sysctl -p
 wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh
 chmod +x bbr.sh
 echo |./bbr.sh
-
 
 reboot
 
